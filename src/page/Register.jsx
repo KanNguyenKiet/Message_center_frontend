@@ -14,26 +14,32 @@ const Register = () => {
     const [password, setPassword] = useState("");
 
     const handleFirstNameChange = (e) => {
+        e.preventDefault();
         setFirstName(e.target.value);
     }
 
     const handleLastNameChange = (e) => {
+        e.preventDefault();
         setLastName(e.target.value);
     }
 
     const handleEmailChange = (e) => {
+        e.preventDefault();
         setEmail(e.target.value);
     }
 
     const handlePhoneChange = (e) => {
+        e.preventDefault();
         setPhone(e.target.value);
     }
 
     const handleUsernameChange = (e) => {
+        e.preventDefault();
         setUsername(e.target.value);
     }
 
     const handlePasswordChange = (e) => {
+        e.preventDefault();
         setPassword(e.target.value);
     }
     
@@ -42,8 +48,7 @@ const Register = () => {
         setLoading(true);
 
         try {
-            console.log(USER_SERVICE_URL);
-            var resp = await axios.post(USER_SERVICE_URL + "/user", {
+            await axios.post(USER_SERVICE_URL + "/user", {
                 "firstName": firstName,
                 "lastName": lastName,
                 "email": email,
@@ -51,7 +56,6 @@ const Register = () => {
                 "userName": username,
                 "password": password,
             });
-            console.log(resp);
         } catch(err) {
             setErr(err);
         } finally {
@@ -72,9 +76,11 @@ const Register = () => {
                     <input required type="text" placeholder="Username" onChange={handleUsernameChange}/>
                     <input required type="password" placeholder="Password" onChange={handlePasswordChange}/>
                     <button disabled={loading}>Sign up</button>
+                    {loading && <span align="center">Loading...</span>}
+                    {err && <span align="center" class="text-warning">Register failed</span>}
                 </form>
                 <p>
-                    You do have an account? <Link to="/register">Login</Link>
+                    You do have an account? <Link to="/login">Login</Link>
                 </p>
             </div>
         </div>
