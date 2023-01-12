@@ -43,11 +43,11 @@ const Login = () => {
                 "username": username,
                 "password": password
             });
-            console.log(resp);
-            console.log(resp['data']['is_success']);
             if (!resp['data']['is_success']) {
                 setMessage("Username or password is incorrect!");
             } else {
+                sessionStorage.setItem("_session", resp['data']['session_key']);
+                console.log(sessionStorage.getItem('_session'));
                 navigate('/');
             }
         } catch(err) {
