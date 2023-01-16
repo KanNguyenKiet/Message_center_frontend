@@ -4,22 +4,21 @@ import getUserInfo from "../module/user"
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
-    const [user, setUser] = useState({});
+    const [currentUser, setCurrentUser] = useState({});
 
     useEffect(() => {
         getUserInfo()
-        .then((uesr) => {
-            console.log(user);
-            setUser(user);
-        })
+        .then((user) => {
+            setCurrentUser(user);
+        });
 
         return () => {
             // logout
         };
-    });
+    }, []);
 
     return (
-        <AuthContext.Provider value={{ user }}>
+        <AuthContext.Provider value={{ currentUser }}>
             {children}
         </AuthContext.Provider>
     );

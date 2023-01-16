@@ -48,7 +48,7 @@ const Login = () => {
             } else {
                 sessionStorage.setItem("_session", resp['data']['session_key']);
                 console.log(sessionStorage.getItem('_session'));
-                navigate('/');
+                navigate("/");
             }
         } catch(err) {
             setErr(err);
@@ -60,7 +60,7 @@ const Login = () => {
     return (
         <div className="formContainer">
             <div className="formWrapper">
-                <span className="logo">Lama Chat</span>
+                <span className="logo">Fake Messenger</span>
                 <span className="title">Login</span>
                 <form onSubmit={handleSubmit}>
                 <input type="text" placeholder="Username" onChange={handleUsernameChange}/>
