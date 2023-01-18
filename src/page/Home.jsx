@@ -1,10 +1,13 @@
-import React, { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
+import React from "react";
+import Sidebar from "../components/Sidebar";
 
 const Home = () => {
-    var { currentUser } = useContext(AuthContext);
     return (
-        <div>Hello {currentUser.last_name} {currentUser.first_name}</div>
+        <div className="home">
+            <div className="container">
+                <Sidebar/>
+            </div>
+        </div>
     )
 }
 
