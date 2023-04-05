@@ -2,16 +2,18 @@ import axios from "axios";
 import { USER_SERVICE_URL } from "../config";
 
 const getUserInfo = async () => {
-    if (!sessionStorage.getItem("_session")) {
+    if (!localStorage.getItem("_session")) {
+        console.log("Cannot get session key");
         return null;
     }
 
     try {
         var resp = await axios.get(USER_SERVICE_URL + "/userinfo", { 
             headers: {
-                "_session": sessionStorage.getItem("_session")
+                "_session": localStorage.getItem("_session")
             }
         });
+        console.log(resp);
         return resp['data']['data'];
     } catch(err) {
         return null;

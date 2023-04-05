@@ -9,6 +9,8 @@ export const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         getUserInfo()
         .then((user) => {
+            console.log("auth context get user context");
+            console.log(user);
             setCurrentUser(user);
         });
 

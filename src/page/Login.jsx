@@ -46,8 +46,7 @@ const Login = () => {
             if (!resp['data']['is_success']) {
                 setMessage("Username or password is incorrect!");
             } else {
-                sessionStorage.setItem("_session", resp['data']['session_key']);
-                console.log(sessionStorage.getItem('_session'));
+                localStorage.setItem("_session", resp['data']['session_key']);
                 navigate("/");
             }
         } catch(err) {

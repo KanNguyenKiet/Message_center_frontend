@@ -10,8 +10,18 @@ function App() {
 	const { currentUser } = useContext(AuthContext);
 
 	const ProtectedRoute = ({ children }) => {
+		console.log("* ", currentUser);
 		if (!currentUser) {
 			return <Navigate to="/login"/>;
+		} else {
+			return children;
+		}
+	}
+
+	const ProtectedRouteLogin = ({ children }) => {
+		console.log("** ", currentUser);
+		if (currentUser) {
+			return <Navigate to="/"/>;
 		} else {
 			return children;
 		}
@@ -24,8 +34,14 @@ function App() {
 					<ProtectedRoute>
 						<Home />
 					</ProtectedRoute>} />
-				<Route path="/register" element={<Register />} />
-				<Route path="/login" element={<Login />} />
+				<Route path="/register" element={
+					<ProtectedRouteLogin>
+						<Register />
+					</ProtectedRouteLogin>} />
+				<Route path="/login" element={
+					<ProtectedRouteLogin>
+						<Login />
+					</ProtectedRouteLogin>} />
 			</Routes>
     	</BrowserRouter>
   	);
